@@ -2,32 +2,32 @@
 
 function test_double_quoted_strings_are_strings()
   local str = "Hello, World"
-  assert_equal(__, type(str))
+  assert_equal('string', type(str))
 end
 
 function test_single_quoted_strings_are_also_strings()
   local str = 'Goodbye, World'
-  assert_equal(__, type(str))
+  assert_equal('string', type(str))
 end
 
 function test_double_bracketed_strings_are_also_strings()
   local str = [[Thank you, World]]
-  assert_equal(__, type(str))
+  assert_equal('string', type(str))
 end
 
 function test_string_length_operator()
   local str = "Hello"
-  assert_equal(__, #str)
+  assert_equal(5, #str)
 end
 
 function test_use_single_quotes_to_create_str_with_double_quotes()
   local str = 'He said, "Go Away."'
-  assert_equal(__, str) -- just copy the literal over there
+  assert_equal('string', str) -- just copy the literal over there
 end
 
 function test_use_double_quotes_to_create_strings_with_single_quotes()
   local str = "Don't"
-  assert_equal(__, str) -- same, just copy the string
+  assert_equal('string', str) -- same, just copy the string
 end
 
 function test_you_can_use_backslash_for_those_hard_cases()
