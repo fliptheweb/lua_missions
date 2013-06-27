@@ -38,7 +38,7 @@ function test_recursive_functions()
     if x <= 0 then return 0 end
     return x + recurse(x-1)
   end
-  assert_equal(0, recurse(10))
+  assert_equal(55, recurse(10))
 end
 
 function test_return_multiple_values()
@@ -87,12 +87,12 @@ function test_only_the_last_invoked_function_returns_all_values_the_rest_return_
   local function sum(a,b,c,d)
     return a + b + c + d
   end
-  assert_equal(__, sum(numbers(), numbers()))
+  assert_equal(37, sum(numbers(), numbers()))
 end
 
 function test_parameters_not_passed_are_nil()
   local function unused_param(p)
-    assert_equal(__, p)
+    assert_equal(nil, p)
   end
   unused_param()
 end
@@ -102,7 +102,7 @@ function test_make_use_of_nil_for_default_values()
     amount = amount or 1 -- very common language idiom for default values
     return number + amount
   end
-  assert_equal(__, add(10))
+  assert_equal(11, add(10))
 end
 
 function test_functions_can_access_variables_on_their_defining_scope()
@@ -112,7 +112,7 @@ function test_functions_can_access_variables_on_their_defining_scope()
     value = 20
   end
   change()
-  assert_equal(__, value)
+  assert_equal(20, value)
 end
 
 function test_parenthesis_are_not_needed_on_invocation_when_the_only_parameter_is_a_string()
@@ -121,7 +121,7 @@ function test_parenthesis_are_not_needed_on_invocation_when_the_only_parameter_i
     str:gsub(" ", function() count = count + 1 end) -- notice the closure here!
     return count
   end
-  assert_equal(__, count_spaces "This string has four spaces") -- no parenthesis!
+  assert_equal(4, count_spaces "This string has four spaces") -- no parenthesis!
 end
 
 function test_parenthesis_are_not_needed_on_invocation_when_the_only_parameter_is_a_table()
@@ -132,7 +132,7 @@ function test_parenthesis_are_not_needed_on_invocation_when_the_only_parameter_i
     end
     return count
   end
-  assert_equal(__, count_zeroes {1, 0, 2, 3, 0, 4, 5, 6, 0, 7})
+  assert_equal(3, count_zeroes {1, 0, 2, 3, 0, 4, 5, 6, 0, 7})
 end
 
 function test_variable_number_of_arguments_with_dot_dot_dot()
@@ -140,7 +140,7 @@ function test_variable_number_of_arguments_with_dot_dot_dot()
     local _,_,x = ...
     return x
   end
-  assert_equal(__, third('a','b','c','d'))
+  assert_equal('c', third('a','b','c','d'))
 end
 
 
