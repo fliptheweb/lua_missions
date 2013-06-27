@@ -2,14 +2,14 @@ function test_local_function_inside_another_function()
   local function foo()
     return 'foo'
   end
-  assert_equal(__, foo())
+  assert_equal('foo', foo())
 end
 
 function test_local_function_with_parameters()
   local function sum(x,y)
     return x + y
   end
-  assert_equal(__, sum(6,4))
+  assert_equal(10, sum(6,4))
 end
 
 function test_assign_function_to_variable()
@@ -17,7 +17,7 @@ function test_assign_function_to_variable()
     return x + y
   end
   local f = sum
-  assert_equal(__, f(3,7))
+  assert_equal(10, f(3,7))
 end
 
 function test_assign_anonymous_function_to_variable()
@@ -25,12 +25,12 @@ function test_assign_anonymous_function_to_variable()
   local f = function(x,y)
     return x + y
   end
-  assert_equal(__, f(5,5))
+  assert_equal(10, f(5,5))
 end
 
 function test_functions_that_dont_return_anything_return_nil()
   local f = function() end
-  assert_equal(__, f())
+  assert_equal(nil, f())
 end
 
 function test_recursive_functions()
@@ -38,7 +38,7 @@ function test_recursive_functions()
     if x <= 0 then return 0 end
     return x + recurse(x-1)
   end
-  assert_equal(__, recurse(10))
+  assert_equal(0, recurse(10))
 end
 
 function test_return_multiple_values()
@@ -47,9 +47,9 @@ function test_return_multiple_values()
   end
 
   local a,b,c = mangle(1,2,3)
-  assert_equal(__, a)
-  assert_equal(__, b)
-  assert_equal(__, c)
+  assert_equal(2, a)
+  assert_equal(3, b)
+  assert_equal(2, c)
 end
 
 function test_ignore_returned_values_on_assignments()
@@ -57,7 +57,7 @@ function test_ignore_returned_values_on_assignments()
     return 1,2,3,4,5,6
   end
   local _,_,x = stuff()
-  assert_equal(__, x)
+  assert_equal(3, x)
 end
 
 function test_use_returned_values_on_functions()
@@ -67,7 +67,7 @@ function test_use_returned_values_on_functions()
   local function sum(x,y)
     return x + y
   end
-  assert_equal(__, sum(repeat_parameter(5)))
+  assert_equal(10, sum(repeat_parameter(5)))
 end
 
 function test_ignore_returned_values_as_parameters()
@@ -77,7 +77,7 @@ function test_ignore_returned_values_as_parameters()
   local function sum(x,y)
     return x + y
   end
-  assert_equal(__, sum(stuff()))
+  assert_equal(3, sum(stuff()))
 end
 
 function test_only_the_last_invoked_function_returns_all_values_the_rest_return_just_one()
