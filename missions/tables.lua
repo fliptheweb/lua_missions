@@ -129,12 +129,12 @@ end
 
 function test_non_numberic_keys_are_ignored_by_table_length()
   local t = { 1,2, hi = 'hello' }
-  assert_equal(__, #t)
+  assert_equal(2, #t)
 end
 
 function test_non_numeric_keys_are_ignored_by_table_concat()
   local t = { 1,2, hello = 'hi' }
-  assert_equal(__, table.concat(t, ', '))
+  assert_equal('1, 2', table.concat(t, ', '))
 end
 
 function test_using_tables_as_keys()
